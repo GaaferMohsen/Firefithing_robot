@@ -1,0 +1,31 @@
+Create a simple Arduino Fire Detection + Relay Water Pump system to control a water pump ONLY when fire is detected using flame sensors.
+
+HARDWARE:
+- Arduino UNO
+- Relay module connected to digital pin D7
+- External power supply for the water pump (through the relay)
+- 3 flame sensors (A0, A1, A2)
+
+TASK:
+- Continuously read flame sensors
+- If NO fire detected → keep pump OFF
+- If fire is detected (any sensor reads fire / low threshold):
+  - Turn pump ON for 3 seconds
+  - Turn pump OFF for 3 seconds
+  - Repeat only while fire is still detected
+- If fire disappears → pump stays OFF immediately
+
+INCLUDE:
+1. Complete Arduino code with clear simple comments
+2. Simple wiring guide:
+   - Flame sensors to Arduino (A0, A1, A2)
+   - Relay module to D7
+   - External pump power through relay (COM + NO)
+3. Pin mapping table (relay, sensors, VCC, GND)
+4. Short explanation of how:
+   - flame sensors detect fire
+   - Arduino triggers relay
+   - relay switches pump ON/OFF safely
+
+GOAL:
+Build a fire-triggered water pump system that activates only when flame sensors detect fire, using a relay as the switching control.
