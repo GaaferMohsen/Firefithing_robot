@@ -1,0 +1,31 @@
+Create a simple Arduino robot system with automatic movement and obstacle stopping using an ultrasonic sensor.
+
+HARDWARE:
+- 2 DC motors with L298N motor driver
+- Ultrasonic sensor (HC-SR04)
+- Relay module for water pump (connected to D7)
+
+BEHAVIOR LOGIC (VERY SIMPLE):
+- Robot moves forward continuously by default
+- Ultrasonic sensor continuously checks distance ahead
+- If an obstacle is detected within a safe distance (e.g. 20 cm):
+  - Immediately stop the motors
+  - Do NOT move until the obstacle is gone
+- If no obstacle is detected:
+  - Continue moving forward
+
+PUMP SYSTEM:
+- relay_pin = 7
+- Pump is NOT used in this stage (just define it in code but keep OFF)
+
+INCLUDE:
+1. Full Arduino code with clear simple comments
+2. Simple circuit diagram:
+   - 2 motors with L298N wiring
+   - HC-SR04 ultrasonic sensor connection
+   - relay module included but not activated
+3. Wiring table with all pin connections
+4. Simple explanation of how obstacle detection works
+
+GOAL:
+Build a basic autonomous robot that moves forward and stops immediately when an obstacle is detected using ultrasonic sensor only (NO fire logic, NO PID, NO servo, NO complex decisions).
