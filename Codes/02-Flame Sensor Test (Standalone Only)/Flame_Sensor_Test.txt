@@ -1,0 +1,26 @@
+Create a simple Arduino project to test 3 flame sensors only.
+
+TASK:
+- Read flame sensors:
+  - Left → A0
+  - Center → A1
+  - Right → A2
+- Print values in Serial Monitor every 500ms
+- Detect fire direction:
+  - LEFT / CENTER / RIGHT
+- Print:
+  "No fire detected"
+  "Fire detected LEFT"
+  "Fire detected CENTER"
+  "Fire detected RIGHT"
+
+INCLUDE:
+1. Full Arduino code with comments
+2. Simple wiring diagram (flame sensors + Arduino only)
+3. Explanation of sensor behavior (high vs low readings)
+
+ADD FUTURE PLACEHOLDER:
+- Define relay_pin = 7 for pump (NOT USED yet)
+
+GOAL:
+Test flame sensors accuracy and direction detection only.
