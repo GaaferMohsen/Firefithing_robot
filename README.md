@@ -1,4 +1,4 @@
-# Firefighting Robot — Arduino Based Autonomous Fire Extinguishing Robot
+# Autonomous Firefighting Robot
 
 A beginner-friendly autonomous robot that detects fire using flame sensors and extinguishes it with a water pump, powered by an Arduino UNO.
 
