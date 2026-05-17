@@ -1,0 +1,24 @@
+Create a simple Arduino project to test a 4-wheel DC robot using L298N motor driver.
+
+TASK
+- Move forward for 3 seconds
+- Move backward for 3 seconds
+- Turn left for 3 seconds
+- Turn right for 3 seconds
+- Stop
+
+Then make the robot move in a SQUARE PATH using ONLY delay-based timing
+- Each side = 3 seconds forward
+- Each turn = 90-degree left turn using time delay (no sensors, no PID)
+
+INCLUDE
+1. Full Arduino code with clear comments
+2. Simple wiring diagram (Arduino + L298N + 4 motors)
+3. Pin mapping table (IN1–IN4, ENA, ENB)
+4. Simple explanation of movement logic
+
+ADD FUTURE PLACEHOLDER
+- Define relay_pin = 7 for a water pump (DO NOT use it yet, just reserve it in code)
+
+GOAL
+Verify correct motor movement and square pattern using time only.
