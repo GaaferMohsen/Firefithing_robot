@@ -1,0 +1,112 @@
+// PID Fire Tracking Robot
+// Arduino UNO + L298N + 3 Flame Sensors
+
+#define IN1 8
+#define IN2 9
+#define IN3 10
+#define IN4 11
+
+#define LEFT_SENSOR A0
+#define CENTER_SENSOR A1
+#define RIGHT_SENSOR A2
+
+// Motor base speed (0 to 255)
+int baseSpeed = 140;
+
+// PID variables
+float Kp = 0.6;
+float Ki = 0.0;
+float Kd = 0.3;
+
+float error = 0;
+float lastError = 0;
+float integral = 0;
+
+// Motor speed limits
+int maxSpeed = 255;
+int minSpeed = 0;
+
+void setup() {
+  pinMode(IN1, OUTPUT);
+  pinMode(IN2, OUTPUT);
+  pinMode(IN3, OUTPUT);
+  pinMode(IN4, OUTPUT);
+}
+
+// Motor control function
+void setMotorSpeed(int leftSpeed, int rightSpeed) {
+
+  leftSpeed = constrain(leftSpeed, minSpeed, maxSpeed);
+  rightSpeed = constrain(rightSpeed, minSpeed, maxSpeed);
+
+  // Left motor
+  if (leftSpeed > 0) {
+    analogWrite(IN1, leftSpeed);
+    digitalWrite(IN2, LOW);
+  } else {
+    analogWrite(IN2, -leftSpeed);
+    digitalWrite(IN1, LOW);
+  }
+
+  // Right motor
+  if (rightSpeed > 0) {
+    analogWrite(IN3, rightSpeed);
+    digitalWrite(IN4, LOW);
+  } else {
+    analogWrite(IN4, -rightSpeed);
+    digitalWrite(IN3, LOW);
+  }
+}
+
+// Read flame direction and calculate error
+float readError() {
+
+  int left = analogRead(LEFT_SENSOR);
+  int center = analogRead(CENTER_SENSOR);
+  int right = analogRead(RIGHT_SENSOR);
+
+  // Convert sensor readings (lower value = stronger fire)
+  left = 1023 - left;
+  center = 1023 - center;
+  right = 1023 - right;
+
+  // If no fire detected
+  if (left < 100 && center < 100 && right < 100) {
+    return 999; // special stop signal
+  }
+
+  // Weighted error calculation
+  float total = left + center + right;
+
+  float errorValue =
+    (-1.0 * left + 0.0 * center + 1.0 * right) / total;
+
+  return errorValue;
+}
+
+void loop() {
+
+  error = readError();
+
+  // No fire condition
+  if (error == 999) {
+    setMotorSpeed(0, 0);
+    return;
+  }
+
+  // PID calculations
+  integral = integral + error;
+  float derivative = error - lastError;
+
+  float output = (Kp * error) + (Ki * integral) + (Kd * derivative);
+
+  lastError = error;
+
+  // Motor speed adjustment
+  int leftMotorSpeed = baseSpeed - (output * 100);
+  int rightMotorSpeed = baseSpeed + (output * 100);
+
+  setMotorSpeed(leftMotorSpeed, rightMotorSpeed);
+
+  delay(50);
+}

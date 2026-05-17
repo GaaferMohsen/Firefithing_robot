@@ -1,0 +1,24 @@
+Create a simple Arduino Fire Detection Robot using only:
+
+HARDWARE:
+- 2 DC motors with L298N motor driver
+- 3 flame sensors (A0, A1, A2)
+- Arduino UNO
+
+BEHAVIOR LOGIC (TIME-BASED ONLY):
+- If no fire detected → stop motors
+- If fire detected on left → turn left for a short fixed time (delay-based)
+- If fire detected on right → turn right for a short fixed time (delay-based)
+- If fire detected in center → move forward
+- Robot should always try to move toward the strongest flame signal
+
+INCLUDE:
+1. Full Arduino code with simple clear comments
+2. Simple circuit diagram:
+   - 2 motors connected to L298N
+   - 3 flame sensors connected to Arduino analog pins
+3. Wiring table with all connections (IN1–IN4, A0–A2)
+4. Simple explanation of how flame direction detection works
+
+GOAL:
+Build a basic fire-following robot using only flame sensors and motor control (NO pump, NO servo, NO ultrasonic, NO LED, NO extra components).
